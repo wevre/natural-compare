@@ -5,7 +5,10 @@
 :section Introduction
 
 	A comparator for natural sorting of strings. Embedded digits are compared as
-	integers.
+	integers. Inspired by Wilker Lúcio's {`natural-sort.clj` gist}[#wilkerlucio].
+
+	:link wilkerlucio
+		https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509
 
 :section How to use
 
@@ -39,7 +42,7 @@
 	necessary with values "" and -1 (which always sort lower than 'legit' values)
 	to make sure shorter strings sort first.
 
-	See the test cases for examples of splitting.
+	See test cases for examples of splitting.
 
 :section Learnings
 
