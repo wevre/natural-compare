@@ -1,0 +1,48 @@
+:project wevrem/natural-compare
+	:author Mike Weaver
+	:created 2020-07
+
+:section Introduction
+
+	A comparator for natural sorting of strings. Embedded digits are compared as
+	integers.
+
+:section How to use
+
+	When comparing strings, use natural-compare as the comparator.
+
+	``` deps.edn
+		{...
+		 :deps {...
+		        wevrem/natural-compare {:git/url ""
+		                                :sha ""}
+		        ...}
+		 ...}
+
+	``` your-namespace.clj
+		(ns your-namespace
+		  (:require [wevrem.natural-compare :refer [natural-compare]]))
+
+		(def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
+
+		(sort natural-compare arr)
+
+		;; => ("t1" "t2" "t3" "t10" "t12" "t27")
+
+:section How it works
+
+	`natural-compare` compares two strings. Each is split into a sequence of
+	alternating text and integer elements and then the two sequences are compared
+	element by element. The trick is to make sure that when splitting the string,
+	the first element is always text, the elements always alternate between text
+	and integer, and the last element is an integer. The sequence is padded as
+	necessary with values "" and -1 (which always sort lower than 'legit' values)
+	to make sure shorter strings sort first.
+
+	See the test cases for examples of splitting.
+
+:section Learnings
+
+	* Test files need to be `.clj` for test-runner to find them.
+
+	* Reader conditionals only work in `.cljc` files.
