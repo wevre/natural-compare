@@ -1,5 +1,5 @@
-(ns wevrem.natural-compare-test
-  (:require [wevrem.natural-compare :as sut]
+(ns wevre.natural-compare-test
+  (:require [wevre.natural-compare :as sut]
             [clojure.test :as t]))
 
 (t/deftest test-split-digits

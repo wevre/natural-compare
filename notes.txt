@@ -1,11 +1,11 @@
-:project wevrem/natural-compare
+:project wevre/natural-compare
 	:author Mike Weaver
 	:created 2020-07
 
 :section Introduction
 
 	A comparator for natural sorting of strings. Embedded digits are compared as
-	integers. Inspired by Wilker Lúcio's {`natural-sort.clj` gist}[#wilkerlucio].
+	integers. Inspired by Wilker Lúcio's {`natural-sort.clj` gist}[wilkerlucio].
 
 	:link wilkerlucio
 		https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509
@@ -17,14 +17,14 @@
 	``` deps.edn
 		{...
 		 :deps {...
-		        wevrem/natural-compare {:git/url ""
-		                                :sha ""}
+		        wevre/natural-compare {:git/url ""
+		                               :sha ""}
 		        ...}
 		 ...}
 
 	``` your-namespace.clj
 		(ns your-namespace
-		  (:require [wevrem.natural-compare :refer [natural-compare]]))
+		  (:require [wevre.natural-compare :refer [natural-compare]]))
 
 		(def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
 
