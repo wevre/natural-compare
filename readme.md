@@ -1,7 +1,8 @@
 # natural-compare
 
-A natural-sort compatator for strings. Sorts embedded digits as integers, so
-strings like `["v12" "v2"]` will sort 'naturally' as you would expect:
+A natural-sort compatator for strings in Clojure/Script. Sorts embedded digits
+as integers, so strings like `["v12" "v2"]` will sort 'naturally' as you would
+expect:
 
     (sort ["v12" "v2"])
     user=> ("v12" "v2")

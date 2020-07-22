@@ -49,3 +49,6 @@
 	* Test files need to be `.clj` for test-runner to find them.
 
 	* Reader conditionals only work in `.cljc` files.
+
+	* POM file needs a <resources> section under the <build> section in order to
+	include the .clj files in the output JAR file.
