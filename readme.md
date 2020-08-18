@@ -4,13 +4,15 @@ A natural-sort compatator for strings in Clojure/Script. Sorts embedded digits
 as integers, so strings like `["v12" "v2"]` will sort 'naturally' as you would
 expect:
 
-    (def v ["v12" "v2"])
+```clj
+(def v ["v12" "v2"])
 
-    (sort v)
-    ;;user=> ("v12" "v2")   ;; lexical sort
+(sort v)
+;;user=> ("v12" "v2")   ;; lexical sort
 
-    (sort natural-compare v)
-    ;;user=> ("v2" "v12")   ;; 'natural' sort
+(sort natural-compare v)
+;;user=> ("v2" "v12")   ;; 'natural' sort
+```
 
 # Install
 
@@ -24,7 +26,7 @@ project.clj
 
 # How to use
 
-```
+```clj
 (require '[wevre/natural-compare :refer [natural-compare]])
 
 (def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
