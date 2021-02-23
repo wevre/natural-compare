@@ -1,4 +1,6 @@
+/.calva
 /.cpcache
+/.lsp
+.nrepl-port
 /target
 /classes
-.nrepl-port

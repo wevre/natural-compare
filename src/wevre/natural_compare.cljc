@@ -15,8 +15,11 @@
 
 (defn natural-compare
   "Compares two strings using natural sorting."
-  [a b]
-  (or (->> (map compare (split-digits a) (split-digits b))
-           (drop-while zero?)
-           first)
-      0))
+  ([a b]
+   (natural-compare compare a b))
+  
+  ([cmp a b]
+   (or (->> (map cmp (split-digits a) (split-digits b))
+            (drop-while zero?)
+            first)
+       0)))
