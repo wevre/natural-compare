@@ -18,11 +18,11 @@ expect:
 
 deps.edn
 
-    wevre/natural-compare {:mvn/version "0.0.6"}
+    wevre/natural-compare {:mvn/version "0.0.8"}
 
 project.clj
 
-    [wevre/natural-compare "0.0.6"]
+    [wevre/natural-compare "0.0.8"]
 
 # How to use
 
