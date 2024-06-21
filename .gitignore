@@ -4,3 +4,4 @@
 .nrepl-port
 /target
 /classes
+.clj-kondo

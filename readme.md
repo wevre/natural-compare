@@ -51,6 +51,11 @@ sure shorter strings sort first.
 
 See test cases for more examples.
 
+# Where it came from
+
+Adapted from a gist (and subsequent comments) by Wilker Lúcio -- [`Alphabetical/Natural sorting in
+Clojure/Clojurescript`](https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509)
+
 # License
 
 Copyright © Mike Weaver
