@@ -1,5 +1,8 @@
 # natural-compare
 
+[![cljdoc badge](https://cljdoc.org/badge/wevre/natural-compare)](https://cljdoc.org/d/wevre/natural-compare)
+[![bb compatible](https://raw.githubusercontent.com/babashka/babashka/master/logo/badge.svg)](https://babashka.org)
+
 A natural-sort compatator for strings in Clojure/Script. Sorts embedded digits
 as integers, so strings like `["v12" "v2"]` will sort 'naturally' as you would
 expect:
