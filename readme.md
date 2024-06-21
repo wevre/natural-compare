@@ -56,7 +56,9 @@ See test cases for more examples.
 
 Note the comparator uses `Long/parseLong` (or `js/parseInt` for cljs) and as
 such will choke on integer strings that overflow. Handling that, if needed, is
-left as an exercise for the reader. :-)
+left as an exercise for the reader. :-) While you're at it, another thing you
+might consider is what to do when you encounter strings like "MON", "TUE", etc.
+or "JAN", "FEB", etc.—if, you know, you need that sort of capability.
 
 # Where it came from
 
