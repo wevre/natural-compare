@@ -27,7 +27,7 @@ project.clj
 # How to use
 
 ```clj
-(require '[wevre/natural-compare :refer [natural-compare]])
+(require '[wevre.natural-compare :refer [natural-compare]])
 
 (def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
 
