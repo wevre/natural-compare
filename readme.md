@@ -3,9 +3,9 @@
 [![cljdoc badge](https://cljdoc.org/badge/wevre/natural-compare)](https://cljdoc.org/d/wevre/natural-compare)
 [![bb compatible](https://raw.githubusercontent.com/babashka/babashka/master/logo/badge.svg)](https://babashka.org)
 
-A natural-sort compatator for strings in Clojure/Script. Sorts embedded digits
-as integers, so strings like `["v12" "v2"]` will sort 'naturally' as you would
-expect:
+A natural-sort [comparator](https://clojure.org/guides/comparators) for strings
+in Clojure/Script. Sorts embedded digits as integers, so strings like `["v12"
+"v2"]` will sort 'naturally' as you would expect:
 
 ```clj
 (def v ["v12" "v2"])
@@ -26,6 +26,9 @@ deps.edn
 project.clj
 
     [wevre/natural-compare "0.0.8"]
+
+Or, and this might be the easiest, just copy the two functions in
+`natural_compare.cljc` directly into your project.
 
 # How to use
 
@@ -50,6 +53,10 @@ with values `""` and `-1` (which always sort lower than 'legit' values) to make
 sure shorter strings sort first.
 
 See test cases for more examples.
+
+Note the comparator uses `Long/parseLong` (or `js/parseInt` for cljs) and as
+such will choke on integer strings that overflow. Handling that, if needed, is
+left as an exercise for the reader. :-)
 
 # Where it came from
 
