@@ -21,11 +21,11 @@ in Clojure/Script. Treats embedded digits as integers, so strings like `["v12"
 
 deps.edn
 
-    wevre/natural-compare {:mvn/version "0.0.8"}
+    wevre/natural-compare {:mvn/version "0.0.9"}
 
 project.clj
 
-    [wevre/natural-compare "0.0.8"]
+    [wevre/natural-compare "0.0.9"]
 
 Or, and this might be the easiest, just copy the body of
 `impl/natural_compare.cljc` directly into your project.
