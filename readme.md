@@ -4,17 +4,17 @@
 [![bb compatible](https://raw.githubusercontent.com/babashka/babashka/master/logo/badge.svg)](https://babashka.org)
 
 A natural-sort [comparator](https://clojure.org/guides/comparators) for strings
-in Clojure/Script. Sorts embedded digits as integers, so strings like `["v12"
-"v2"]` will sort 'naturally' as you would expect:
+in Clojure/Script. Treats embedded digits as integers, so strings like `["v12"
+"v2"]` will receive a natural sort, as opposed to a lexical sort:
 
 ```clj
 (def v ["v12" "v2"])
 
 (sort v)
-;;user=> ("v12" "v2")   ;; lexical sort
+;;=> ("v12" "v2")   ;; lexical sort
 
 (sort natural-compare v)
-;;user=> ("v2" "v12")   ;; 'natural' sort
+;;=> ("v2" "v12")   ;; natural sort
 ```
 
 # Install
@@ -27,43 +27,50 @@ project.clj
 
     [wevre/natural-compare "0.0.8"]
 
-Or, and this might be the easiest, just copy the two functions in
-`natural_compare.cljc` directly into your project.
+Or, and this might be the easiest, just copy the body of
+`impl/natural_compare.cljc` directly into your project.
 
 # How to use
 
 ```clj
-(require '[wevre.natural-compare :refer [natural-compare]])
+(require '[wevre.natural-compare :refer [natural-compare])
 
 (def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
 
 (sort natural-compare ss)
-
 ;;=> ("t1" "t2" "t3" "t10" "t12" "t27")
+
+(sort (comp - natural-compare) ss)
+;;=> ("t27" "t12" "t10" "t3" "t2" "t1")
+
 ```
 
 # How it works
 
 `natural-compare` operates on strings. Each is split into a sequence of
-alternating text and integer elements and then the two sequences are compared
-element by element. The trick is to make sure that when splitting the string,
-the first element is always text, the elements always alternate between text and
-integer, and the last element is an integer. The sequence is padded as necessary
-with values `""` and `-1` (which always sort lower than 'legit' values) to make
-sure shorter strings sort first.
+alternating text and integer elements (always starting with a text element) and
+then the two sequences are compared element by element. The elements are padded
+as necessary with values that always sort lower than 'legit' values, to ensure
+shorter strings sort first.
 
 See test cases for more examples.
 
-Note the comparator uses `Long/parseLong` (or `js/parseInt` for cljs) and as
-such will choke on integer strings that overflow. Handling that, if needed, is
-left as an exercise for the reader. :-) While you're at it, another thing you
-might consider is what to do when you encounter strings like "MON", "TUE", etc.
-or "JAN", "FEB", etc.—if, you know, you need that sort of capability.
+Note, this latest version of `natural-compare` drops the use of regular
+expressions and `Long/parseLong` (or `js/parseInt` for cljs) and won't choke on
+integer strings that would otherwise overflow.
 
 # Where it came from
 
 Adapted from a gist (and subsequent comments) by Wilker Lúcio -- [`Alphabetical/Natural sorting in
 Clojure/Clojurescript`](https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509)
+
+# What's next
+
+Something I would consider useful, but haven't needed yet in my own projects:
+properly sort strings that are date names, like "MON", "TUE", …; "JAN", "FEB",
+….
+
+
 
 # License
 
