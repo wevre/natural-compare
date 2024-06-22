@@ -1,54 +1,62 @@
 :project wevre/natural-compare
-	:author Mike Weaver
-	:created 2020-07
+   :author Mike Weaver
+   :created 2020-07
 
 :section Introduction
 
-	A comparator for natural sorting of strings. Embedded digits are compared as
-	integers. Inspired by Wilker Lúcio's {`natural-sort.clj` gist}[wilkerlucio].
+   A comparator for natural sorting of strings. Embedded digits are compared as
+   integers. Inspired by Wilker Lúcio's {`natural-sort.clj` gist}[wilkerlucio].
 
-	:link wilkerlucio
-		https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509
+   :link wilkerlucio
+      https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509
 
 :section How to use
 
-	When comparing strings, use natural-compare as the comparator.
+   When comparing strings, use natural-compare as the comparator.
 
-	``` deps.edn
-		{...
-		 :deps {...
-		        wevre/natural-compare {:git/url ""
-		                               :sha ""}
-		        ...}
-		 ...}
+   ``` deps.edn
+      {...
+       :deps {...
+              wevre/natural-compare {:git/url ""
+                                     :sha ""}
+              ...}
+       ...}
 
-	``` your-namespace.clj
-		(ns your-namespace
-		  (:require [wevre.natural-compare :refer [natural-compare]]))
+   ``` your-namespace.clj
+      (ns your-namespace
+        (:require [wevre.natural-compare :refer [natural-compare]]))
 
-		(def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
+      (def ss ["t3" "t1" "t10" "t12" "t2" "t27"])
 
-		(sort natural-compare arr)
+      (sort natural-compare arr)
 
-		;; => ("t1" "t2" "t3" "t10" "t12" "t27")
+      ;; => ("t1" "t2" "t3" "t10" "t12" "t27")
 
 :section How it works
 
-	`natural-compare` compares two strings. Each is split into a sequence of
-	alternating text and integer elements and then the two sequences are compared
-	element by element. The trick is to make sure that when splitting the string,
-	the first element is always text, the elements always alternate between text
-	and integer, and the last element is an integer. The sequence is padded as
-	necessary with values "" and -1 (which always sort lower than 'legit' values)
-	to make sure shorter strings sort first.
+   `natural-compare` compares two strings. Each is split into a sequence of
+   alternating text and integer elements and then the two sequences are compared
+   element by element. The trick is to make sure that when splitting the string,
+   the first element is always text, the elements always alternate between text
+   and integer, and the last element is an integer. The sequence is padded as
+   necessary with values "" and -1 (which always sort lower than 'legit' values)
+   to make sure shorter strings sort first.
 
-	See test cases for examples of splitting.
+   See test cases for examples of splitting.
 
 :section Learnings
 
-	* Test files need to be `.clj` for test-runner to find them.
+   * Test files need to be `.clj` for test-runner to find them.
 
-	* Reader conditionals only work in `.cljc` files.
+   * Reader conditionals only work in `.cljc` files.
 
-	* POM file needs a <resources> section under the <build> section in order to
-	include the .clj files in the output JAR file.
+   * POM file needs a <resources> section under the <build> section in order to
+   include the .clj files in the output JAR file.
+
+:section Deploying
+
+   I installed
+
+   ```
+      env CLOJARS_USERNAME=username CLOJARS_PASSWORD=clojars-token \
+      clojure -T:build deploy

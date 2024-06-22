@@ -5,7 +5,7 @@
   <groupId>wevre</groupId>
   <artifactId>natural-compare</artifactId>
   <version>0.0.9</version>
-  <name>natural-compare</name>
+  <name>wevre/natural-compare</name>
   <description>A natural sort comparator for strings in Clojure/Script</description>
   <url>https://github.com/wevre/natural-compare</url>
 
