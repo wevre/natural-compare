@@ -3,16 +3,16 @@
 (def digit #{\0 \1 \2 \3 \4 \5 \6 \7 \8 \9})
 (def non-digit (complement digit))
 
-(defn- pre-pad [a b]
-  (let [cnt-a (count a) cnt-b (count b)
-        c (if (and (< 0 cnt-a) (< 0 cnt-b)) \0 \u0000)
-        d (- cnt-b cnt-a)]
-    [(concat (repeat (max 0 d) c) a)
-     (concat (repeat (max 0 (- d)) c) b)]))
-
 (defn- post-pad [a b]
-  [(concat a [\u0000])
-   (concat b [\u0000])])
+  [(concat a [nil])
+   (concat b [nil])])
+
+(defn- pre-pad [a b]
+  (if (or (empty? a) (empty? b))
+    (post-pad a b)
+    (let [d (- (count b) (count a))]
+      [(concat (repeat (max 0 d) \0) a)
+       (concat (repeat (max 0 (- d)) \0) b)])))
 
 (defn natural-compare
   "Compares two strings using natural, as opposed to lexical, sorting."
@@ -28,3 +28,13 @@
        (empty? b-take)                       -1
        (zero? result)                        (recur cmp a-drop b-drop pred's pad's)
        :else                                 result))))
+
+(defn natural-compare'
+  ([a b] (natural-compare compare a b (cycle [true false])))
+  ([cmp a b text?]
+   (let [pred (if text? non-digit digit)
+         [a-take a-drop] (split-with pred a)
+         [b-take b-drop] (split-with pred b)
+         a-take (if text? (concat a-take [nil]) ())
+         b-take (if text? (concat b-take [nil]) ())
+         ])))
