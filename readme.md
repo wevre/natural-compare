@@ -28,7 +28,7 @@ project.clj
     [wevre/natural-compare "0.0.10"]
 
 Or, and this might be the easiest, just copy the body of
-`impl/natural_compare.cljc` directly into your project.
+`impl/natural_compare_parse.cljc` directly into your project.
 
 # How to use
 
