@@ -21,11 +21,11 @@ in Clojure/Script. Treats embedded digits as integers, so strings like `["v12"
 
 deps.edn
 
-    wevre/natural-compare {:mvn/version "0.0.9"}
+    wevre/natural-compare {:mvn/version "0.0.10"}
 
 project.clj
 
-    [wevre/natural-compare "0.0.9"]
+    [wevre/natural-compare "0.0.10"]
 
 Or, and this might be the easiest, just copy the body of
 `impl/natural_compare.cljc` directly into your project.
@@ -63,6 +63,27 @@ integer strings that would otherwise overflow.
 
 Adapted from a gist (and subsequent comments) by Wilker Lúcio -- [`Alphabetical/Natural sorting in
 Clojure/Clojurescript`](https://gist.github.com/wilkerlucio/db54dc83a9664124f3febf6356f04509)
+
+Reading those comments, you'll see there is some discussion about limitations
+(overflow) and performance. This library actually contains a few different
+implementations taken from that discussion. Based on my rudimentary benchmarks
+so far, I have drawn these conclusions:
+
+* For shorter strings, the implementations based on parsing integers are
+  fastest, but they have the potential limitation to overflow on (string
+  representations of) large integer inputs.
+
+* The "lazy" implementation outperforms the others on large strings where it can
+  stop early without needing to split and parse the entire string.
+
+* It depends on your use case, but I feel that most situations where a natural
+  sort order is desired are about small strings (like filenames or labels), so
+  the concerns about overflow or laziness are (in my experience) not as
+  important.
+
+* The default implemenation used in this library ("parse") is based on parsing
+  integers and will overflow. If you need something different for your use case,
+  check out one of the other implementations.
 
 # What's next
 

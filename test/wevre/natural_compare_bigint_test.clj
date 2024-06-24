@@ -1,12 +1,14 @@
-(ns wevre.natural-compare-test
-  (:require [wevre.natural-compare :as sut]
+(ns wevre.natural-compare-bigint-test
+  (:require [wevre.impl.natural-compare-bigint :as sut]
             [clojure.test :refer [deftest testing are is]]))
 
 (deftest natural-compare
   (testing "sort"
    (are [coll out] (= out (vec (sort sut/natural-compare coll)))
      ["0" ""]                           ["" "0"]
+     ["B" ""]                           ["" "B"]
      ["C0" "C"]                         ["C" "C0"]
+     ["A0" "0"]                         ["0" "A0"]
      ["a1b2c3" "a1b2"]                  ["a1b2" "a1b2c3"]
      ["a1b2c3" "a1b2c"]                 ["a1b2c" "a1b2c3"]
      ["a1b2c3" "a1b12c4" "a1b2"]        ["a1b2" "a1b2c3" "a1b12c4"]

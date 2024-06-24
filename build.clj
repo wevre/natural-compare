@@ -3,7 +3,7 @@
   (:require [org.corfield.build :as bb]))
 
 (def lib 'wevre/natural-compare)
-(def version "0.0.9")
+(def version "0.0.10")
 
 (defn test "Run the tests." [opts]
   (bb/run-tests opts))
