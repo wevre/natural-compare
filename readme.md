@@ -55,10 +55,6 @@ shorter strings sort first.
 
 See test cases for more examples.
 
-Note, this latest version of `natural-compare` drops the use of regular
-expressions and `Long/parseLong` (or `js/parseInt` for cljs) and won't choke on
-integer strings that would otherwise overflow.
-
 # Where it came from
 
 Adapted from a gist (and subsequent comments) by Wilker Lúcio -- [`Alphabetical/Natural sorting in
